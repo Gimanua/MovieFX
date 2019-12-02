@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
 
 /**
  * JavaFX App
@@ -20,6 +21,11 @@ public class App extends Application {
         scene = new Scene(loadFXML("main"), 640, 480);
         stage.setScene(scene);
         stage.show();
+        
+        //Test
+        ConnectionFactory.init();
+        Connection connection = ConnectionFactory.getConnection();
+        System.out.println(connection);
     }
 
     static void setRoot(String fxml) throws IOException {

@@ -6,7 +6,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Slider;
+import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class AddMovieController {
 
@@ -20,7 +23,7 @@ public class AddMovieController {
     private TextField revenueField;
 
     @FXML
-    private Slider lengthSlider;
+    private Spinner<?> lengthSpinner;
 
     @FXML
     private Slider gradeSlider;
@@ -39,5 +42,22 @@ public class AddMovieController {
 
     @FXML
     private ListView<?> genreList;
+
+    @FXML
+    private Button addMovieButton;
+
+    @FXML
+    private Button cancel;
+
+    @FXML
+    void addMovieHandler(MouseEvent event) {
+        System.out.println("Add movie logic here!");
+    }
+
+    @FXML
+    void cancelHandler(MouseEvent event) {
+        Stage stage = (Stage) cancel.getScene().getWindow();
+        stage.close();
+    }
 
 }
