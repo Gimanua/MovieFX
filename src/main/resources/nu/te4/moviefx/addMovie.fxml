@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nu.te4.moviefx.AddMovieController">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" text="Titel">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="titleField" />
+      <Label text="Budget" />
+      <TextField fx:id="budgetField" />
+      <Label text="Inkomst" />
+      <TextField fx:id="revenueField" />
+      <Label text="Längd (minuter)" />
+      <Slider fx:id="lengthSlider" max="400.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+      <Label text="Betyg" />
+      <Slider fx:id="gradeSlider" blockIncrement="1.0" majorTickUnit="1.0" max="10.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+      <Label text="Lanseringsdatum" />
+      <DatePicker fx:id="releaseDatePicker" />
+      <Label text="Regissör" />
+      <ComboBox fx:id="directorBox" editable="true" prefWidth="150.0" />
+      <Label text="Genrer" />
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <ComboBox fx:id="genreBox" editable="true" prefWidth="150.0" />
+            <Button fx:id="addGenre" mnemonicParsing="false" text="Lägg till Genre" />
+         </children>
+      </HBox>
+      <ListView fx:id="genreList" prefHeight="200.0" prefWidth="200.0" />
+   </children>
+</VBox>
