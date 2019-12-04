@@ -17,21 +17,24 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import nu.te4.moviefx.entities.Filter;
+import nu.te4.moviefx.entities.filters.TitleFilter;
+import nu.te4.moviefx.entities.filters.TitleFilter.FilterChoice;
 
 /**
  *
  * @author Adrian Klasson
  */
 public class AddFilterController {
-    
+
     @FXML
-    private ChoiceBox<?> filterType;
+    private ChoiceBox filterType;
 
     @FXML
     private HBox titleFilterForm;
 
     @FXML
-    private ChoiceBox<?> titleFilterChoices;
+    private ChoiceBox titleFilterChoices;
 
     @FXML
     private TextField titleFilterField;
@@ -94,13 +97,13 @@ public class AddFilterController {
     private Button cancelButton;
 
     private HBox currentForm;
-    
+
     @FXML
-    public void initialize(){
+    public void initialize() {
         initializeFilterType();
     }
-    
-    private void initializeFilterType(){
+
+    private void initializeFilterType() {
         filterType.getItems().add("Titel");
         filterType.getItems().add("Budget");
         filterType.getItems().add("Inkomst");
@@ -109,53 +112,75 @@ public class AddFilterController {
         filterType.getItems().add("Lanseringsdatum");
         filterType.getItems().add("Regissör");
         filterType.getItems().add("Genrer");
-        
-        ChangeListener<Number> changeListener = new ChangeListener<Number>(){
-          
-          @Override
-          public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue){
-              String selectedOption = filterType.getItems().get((Integer) newValue).toString();
-              
-              if(currentForm != null){
-                  currentForm.setVisible(false);
-              }
-              switch(selectedOption){
-                  case "Titel":
-                      currentForm = titleFilterForm;
-                      break;
-                  case "Budget":
-                      currentForm = budgetFilterForm;
-                      break;
-                  case "Inkomst":
-                      currentForm = revenueFilterForm;
-                      break;
-                  case "Längd":
-                      currentForm = lengthFilterForm;
-                      break;
-                  case "Betyg":
-                      currentForm = ratingFilterForm;
-                      break;
-                  case "Lanseringsdatum":
-                      currentForm = releaseDateFilterForm;
-                      break;
-                  case "Regissör":
-                      currentForm = directorFilterForm;
-                      break;
-                  case "Genrer":
-                      //Add form for this
-                      break;
-              }
-              currentForm.setVisible(true);
-          }
+
+        ChangeListener<Number> changeListener = new ChangeListener<Number>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
+                String selectedOption = filterType.getItems().get((Integer) newValue).toString();
+
+                if (currentForm != null) {
+                    currentForm.setVisible(false);
+                }
+                switch (selectedOption) {
+                    case "Titel":
+                        currentForm = titleFilterForm;
+                        break;
+                    case "Budget":
+                        currentForm = budgetFilterForm;
+                        break;
+                    case "Inkomst":
+                        currentForm = revenueFilterForm;
+                        break;
+                    case "Längd":
+                        currentForm = lengthFilterForm;
+                        break;
+                    case "Betyg":
+                        currentForm = ratingFilterForm;
+                        break;
+                    case "Lanseringsdatum":
+                        currentForm = releaseDateFilterForm;
+                        break;
+                    case "Regissör":
+                        currentForm = directorFilterForm;
+                        break;
+                    case "Genrer":
+                        //Add form for this
+                        break;
+                }
+                currentForm.setVisible(true);
+            }
         };
         filterType.getSelectionModel().selectedIndexProperty().addListener(changeListener);
     }
-    
-    
+
+    private void initializeTitleFilterForm(){
+        titleFilterChoices.getItems().add("innehåller");
+        titleFilterChoices.getItems().add("innehåller inte");
+        titleFilterChoices.getItems().add("börjar med");
+        titleFilterChoices.getItems().add("börjar inte med");
+        titleFilterChoices.getItems().add("slutar med");
+        titleFilterChoices.getItems().add("slutar inte med");
+    }
     
     @FXML
     void addFilterHandler(MouseEvent event) {
+        Filter filter;
+        String selectedFilterType = filterType.getItems().get(filterType.getSelectionModel().getSelectedIndex()).toString();
 
+        switch (selectedFilterType) {
+            case "Titel":
+                String filterValue = titleFilterField.getText();
+                FilterChoice filterChoice;
+                filter = new TitleFilter(titleFilterField.getText(), TitleFilter.FilterChoice.StartsWith);
+                break;
+            default:
+                filter = null;
+                break;
+        }
+
+        MainController.filters.add(filter);
+        //Close the window
     }
 
     @FXML

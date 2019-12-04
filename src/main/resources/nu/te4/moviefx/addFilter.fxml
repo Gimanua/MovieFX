@@ -20,52 +20,52 @@
             <HBox fx:id="titleFilterForm" prefHeight="100.0" prefWidth="200.0" visible="false">
                <children>
                   <TextField editable="false" prefHeight="25.0" prefWidth="80.0" text="Filmens titel" />
-                  <ChoiceBox prefWidth="150.0" />
-                  <TextField />
+                  <ChoiceBox fx:id="titleFilterChoices" prefWidth="150.0" />
+                  <TextField fx:id="titleFilterField" />
                </children>
             </HBox>
             <HBox fx:id="budgetFilterForm" prefHeight="100.0" prefWidth="200.0" visible="false">
                <children>
                   <TextField editable="false" prefHeight="25.0" prefWidth="99.0" text="Filmens budget" />
-                  <ChoiceBox prefWidth="150.0" />
-                  <TextField />
+                  <ChoiceBox fx:id="budgetFilterChoices" prefWidth="150.0" />
+                  <TextField fx:id="budgetFilterField" />
                </children>
             </HBox>
             <HBox fx:id="revenueFilterForm" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" visible="false">
                <children>
                   <TextField editable="false" prefHeight="25.0" prefWidth="99.0" text="Filmens inkomst" />
-                  <ChoiceBox prefWidth="150.0" />
-                  <TextField />
+                  <ChoiceBox fx:id="revenueFilterChoices" prefWidth="150.0" />
+                  <TextField fx:id="revenueFilterField" />
                </children>
             </HBox>
             <HBox fx:id="lengthFilterForm" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" visible="false">
                <children>
                   <TextField editable="false" prefHeight="25.0" prefWidth="99.0" text="Filmen är" />
-                  <ChoiceBox prefWidth="150.0" />
-                  <Spinner />
+                  <ChoiceBox fx:id="lengthFilterChoices" prefWidth="150.0" />
+                  <Spinner fx:id="lengthFilterSpinner" />
                   <TextField editable="false" text="minuter." />
                </children>
             </HBox>
             <HBox fx:id="ratingFilterForm" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" visible="false">
                <children>
                   <TextField editable="false" prefHeight="25.0" prefWidth="99.0" text="Filmen har" />
-                  <ChoiceBox prefWidth="150.0" />
-                  <Slider majorTickUnit="1.0" max="10.0" minorTickCount="1" prefHeight="38.0" prefWidth="271.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                  <ChoiceBox fx:id="ratingFilterChoices" prefWidth="150.0" />
+                  <Slider fx:id="ratingFilterSlider" majorTickUnit="1.0" max="10.0" minorTickCount="1" prefHeight="38.0" prefWidth="271.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
                </children>
             </HBox>
             <HBox fx:id="releaseDateFilterForm" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" visible="false">
                <children>
                   <TextField editable="false" prefHeight="25.0" prefWidth="99.0" text="Filmen är lanserad" />
-                  <ChoiceBox prefWidth="150.0" />
-                  <DatePicker />
+                  <ChoiceBox fx:id="releaseDateFilterChoices" prefWidth="150.0" />
+                  <DatePicker fx:id="releaseDateFilterDatePicker" />
                </children>
             </HBox>
             <HBox fx:id="directorFilterForm" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" visible="false">
                <children>
                   <TextField editable="false" prefHeight="25.0" prefWidth="99.0" text="Filmen" />
-                  <ChoiceBox prefWidth="150.0" />
+                  <ChoiceBox fx:id="directorFilterChoices" prefWidth="150.0" />
                   <TextField editable="false" text="regisserats av" />
-                  <ChoiceBox layoutX="109.0" layoutY="10.0" prefWidth="150.0" />
+                  <ChoiceBox fx:id="directorFilterDirectorChoices" layoutX="109.0" layoutY="10.0" prefWidth="150.0" />
                </children>
             </HBox>
          </children>

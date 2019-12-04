@@ -1,5 +1,6 @@
 package nu.te4.moviefx;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,9 +15,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import nu.te4.moviefx.entities.Filter;
 
 public class MainController {
 
+    public static ObservableList<Filter> filters;
+    
     @FXML
     private ComboBox<?> searchTypeBox;
 
