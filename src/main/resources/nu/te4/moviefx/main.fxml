@@ -44,7 +44,7 @@
         </rowConstraints>
          <children>
             <Label text="Aktiva Filter" />
-            <Button fx:id="addFilterButton" mnemonicParsing="false" text="Lägg till Filter" GridPane.columnIndex="3" />
+            <Button fx:id="addFilterButton" mnemonicParsing="false" onMouseClicked="#addFilterHandler" text="Lägg till Filter" GridPane.columnIndex="3" />
          </children>
       </GridPane>
       <ListView fx:id="filterList" prefHeight="200.0" prefWidth="200.0" />

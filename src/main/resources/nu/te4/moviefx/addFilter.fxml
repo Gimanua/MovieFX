@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nu.te4.moviefx.AddFilterController">
+   <children>
+      <Label text="Filter för" />
+      <ChoiceBox fx:id="filterType" prefWidth="150.0" />
+      <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="147.0" prefWidth="600.0">
+         <children>
+            <HBox fx:id="titleFilterForm" prefHeight="100.0" prefWidth="200.0" visible="false">
+               <children>
+                  <TextField editable="false" prefHeight="25.0" prefWidth="80.0" text="Filmens titel" />
+                  <ChoiceBox prefWidth="150.0" />
+                  <TextField />
+               </children>
+            </HBox>
+            <HBox fx:id="budgetFilterForm" prefHeight="100.0" prefWidth="200.0" visible="false">
+               <children>
+                  <TextField editable="false" prefHeight="25.0" prefWidth="99.0" text="Filmens budget" />
+                  <ChoiceBox prefWidth="150.0" />
+                  <TextField />
+               </children>
+            </HBox>
+            <HBox fx:id="revenueFilterForm" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" visible="false">
+               <children>
+                  <TextField editable="false" prefHeight="25.0" prefWidth="99.0" text="Filmens inkomst" />
+                  <ChoiceBox prefWidth="150.0" />
+                  <TextField />
+               </children>
+            </HBox>
+            <HBox fx:id="lengthFilterForm" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" visible="false">
+               <children>
+                  <TextField editable="false" prefHeight="25.0" prefWidth="99.0" text="Filmen är" />
+                  <ChoiceBox prefWidth="150.0" />
+                  <Spinner />
+                  <TextField editable="false" text="minuter." />
+               </children>
+            </HBox>
+            <HBox fx:id="ratingFilterForm" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" visible="false">
+               <children>
+                  <TextField editable="false" prefHeight="25.0" prefWidth="99.0" text="Filmen har" />
+                  <ChoiceBox prefWidth="150.0" />
+                  <Slider majorTickUnit="1.0" max="10.0" minorTickCount="1" prefHeight="38.0" prefWidth="271.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+               </children>
+            </HBox>
+            <HBox fx:id="releaseDateFilterForm" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" visible="false">
+               <children>
+                  <TextField editable="false" prefHeight="25.0" prefWidth="99.0" text="Filmen är lanserad" />
+                  <ChoiceBox prefWidth="150.0" />
+                  <DatePicker />
+               </children>
+            </HBox>
+            <HBox fx:id="directorFilterForm" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" visible="false">
+               <children>
+                  <TextField editable="false" prefHeight="25.0" prefWidth="99.0" text="Filmen" />
+                  <ChoiceBox prefWidth="150.0" />
+                  <TextField editable="false" text="regisserats av" />
+                  <ChoiceBox layoutX="109.0" layoutY="10.0" prefWidth="150.0" />
+               </children>
+            </HBox>
+         </children>
+      </StackPane>
+      <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button mnemonicParsing="false" onMouseClicked="#addFilterHandler" text="Lägg Till" />
+            <Button fx:id="cancelButton" mnemonicParsing="false" onMouseClicked="#cancelHandler" text="Avbryt" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

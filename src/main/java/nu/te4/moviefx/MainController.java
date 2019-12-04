@@ -60,6 +60,20 @@ public class MainController {
     private TableColumn<?, ?> genresColumn;
 
     @FXML
+    void addFilterHandler(MouseEvent event) {
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("addFilter.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Lägg till Filter");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch(Exception ex){
+            System.out.println("MainController.addFilterHandler: " + ex.getMessage());
+        }
+    }
+    
+    @FXML
     void addMovieHandler(MouseEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("addMovie.fxml"));
