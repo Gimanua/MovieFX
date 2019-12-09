@@ -3,6 +3,7 @@ package nu.te4.moviefx.beans;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import nu.te4.moviefx.ConnectionFactory;
@@ -13,6 +14,31 @@ import nu.te4.moviefx.entities.Genre;
  * @author Adrian Klasson
  */
 public class GenreBean {
+    
+    /**
+     * Gets all the genres from the projects database.
+     * @return A list of all the genres. The list is empty if it's not possible to retrieve the genres.
+     */
+    public List<Genre> getGenres(){
+        List<Genre> genres = new ArrayList();
+        
+        try(Connection connection = ConnectionFactory.getConnection()){
+            String sql = "SELECT * FROM genres";
+            Statement stmt = connection.createStatement();
+            ResultSet data = stmt.executeQuery(sql);
+            
+            while(data.next()){
+                int genreID = data.getInt("id");
+                String name = data.getString("name");
+                
+                genres.add(new Genre(genreID, name));
+            }
+        } catch(Exception ex){
+            System.out.println("GenreBean.getGenres(): " + ex.getMessage());
+        }
+        
+        return genres;
+    }
     
     /**
      * Gets all the genres for a certain movie from the projects database.
@@ -34,7 +60,7 @@ public class GenreBean {
             }
             
         } catch(Exception ex){
-            System.out.println("GenreBean.getGenres: " + ex.getMessage());
+            System.out.println("GenreBean.getGenres(int): " + ex.getMessage());
         }
         
         return genres;

@@ -50,11 +50,12 @@ public class UtilityBean {
     
     /**
      * Opens a new window.
+     * @param controllerClass The class of the controller whom whish to open a new window.
      * @param window The window to open.
      */
-    public void openWindow(Window window){
+    public void openWindow(Class controllerClass, Window window){
         try{
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(window.fxmlFile));
+            FXMLLoader fxmlLoader = new FXMLLoader(controllerClass.getResource(window.fxmlFile));
             Parent root = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.setTitle(window.title);

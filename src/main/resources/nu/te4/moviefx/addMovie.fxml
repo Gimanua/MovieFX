@@ -4,15 +4,19 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nu.te4.moviefx.AddMovieController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="492.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nu.te4.moviefx.AddMovieController">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" text="Titel">
          <font>
@@ -20,26 +24,70 @@
          </font>
       </Label>
       <TextField fx:id="titleField" />
-      <Label text="Budget" />
+      <Label text="Budget">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
       <TextField fx:id="budgetField" />
-      <Label text="Inkomst" />
+      <Label text="Inkomst">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
       <TextField fx:id="revenueField" />
-      <Label text="Längd (minuter)" />
-      <Spinner fx:id="lengthSpinner" />
-      <Label text="Betyg" />
+      <Label text="Längd">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <GridPane minHeight="-Infinity">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Timmar" />
+            <Label layoutX="10.0" layoutY="7.0" text="Minuter" GridPane.columnIndex="1" />
+            <Label text="Sekunder" GridPane.columnIndex="2" />
+            <Spinner fx:id="hoursSpinner" GridPane.rowIndex="1" />
+            <Spinner fx:id="minutesSpinner" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Spinner fx:id="secondsSpinner" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+      <Label text="Betyg">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
       <Slider fx:id="gradeSlider" blockIncrement="1.0" majorTickUnit="1.0" max="10.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
-      <Label text="Lanseringsdatum" />
-      <DatePicker fx:id="releaseDatePicker" />
-      <Label text="Regissör" />
+      <Label text="Lanseringsdatum">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <DatePicker fx:id="releaseDatePicker" editable="false" />
+      <Label text="Regissör">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
       <ComboBox fx:id="directorBox" editable="true" prefWidth="150.0" />
-      <Label text="Genrer" />
+      <Label text="Genrer">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
             <ComboBox fx:id="genreBox" editable="true" prefWidth="150.0" />
-            <Button fx:id="addGenre" mnemonicParsing="false" text="Lägg till Genre" />
+            <Button fx:id="addGenre" mnemonicParsing="false" onMouseClicked="#addGenreHandler" text="Lägg till Genre" />
          </children>
       </HBox>
-      <ListView fx:id="genreList" prefHeight="200.0" prefWidth="200.0" />
+      <TableView fx:id="genreTable" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="genreColumn" prefWidth="500.0" text="Genre" />
+          <TableColumn fx:id="removeColumn" minWidth="0.0" prefWidth="99.0" text="Ta bort" />
+        </columns>
+      </TableView>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
          <children>
             <Button fx:id="addMovieButton" mnemonicParsing="false" onMouseClicked="#addMovieHandler" text="Lägg till Film" />

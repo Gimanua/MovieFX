@@ -12,7 +12,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import nu.te4.moviefx.beans.MainBean;
 import nu.te4.moviefx.beans.UtilityBean;
-import nu.te4.moviefx.beans.UtilityBean.Window;
 
 /**
  * Controls the main window.
@@ -79,6 +78,7 @@ public class MainController {
         columns.put(gradeColumn, "grade");
         columns.put(releaseDateColumn, "releaseDate");
         columns.put(directorColumn, "director");
+        columns.put(genresColumn, "genres");
         
         mainBean.initializeColumns(columns);
         mainBean.loadMovies(movieTable);
@@ -87,12 +87,12 @@ public class MainController {
     
     @FXML
     void addFilterHandler(MouseEvent event) {
-        utilityBean.openWindow(Window.AddFilter);
+        utilityBean.openWindow(getClass(), UtilityBean.Window.AddFilter);
     }
     
     @FXML
     void addMovieHandler(MouseEvent event) {
-        utilityBean.openWindow(Window.AddMovie);
+        utilityBean.openWindow(getClass(), UtilityBean.Window.AddMovie);
     }
 
 }

@@ -30,4 +30,5 @@ public class MainBean {
     public void loadMovies(TableView movieTable){
         movieTable.getItems().addAll(movieBean.getMovies());
     }
+    
 }
