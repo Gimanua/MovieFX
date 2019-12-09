@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package nu.te4.moviefx;
 
 import javafx.beans.value.ChangeListener;
@@ -22,7 +17,7 @@ import nu.te4.moviefx.entities.filters.TitleFilter;
 import nu.te4.moviefx.entities.filters.TitleFilter.FilterChoice;
 
 /**
- *
+ * Controls the Add Filter window.
  * @author Adrian Klasson
  */
 public class AddFilterController {
@@ -98,11 +93,17 @@ public class AddFilterController {
 
     private HBox currentForm;
 
+    /**
+     * Initalizes this window. This method is called internally by JavaFX.
+     */
     @FXML
     public void initialize() {
         initializeFilterType();
     }
 
+    /**
+     * Adds all the filter types.
+     */
     private void initializeFilterType() {
         filterType.getItems().add("Titel");
         filterType.getItems().add("Budget");
@@ -153,15 +154,6 @@ public class AddFilterController {
         };
         filterType.getSelectionModel().selectedIndexProperty().addListener(changeListener);
     }
-
-    private void initializeTitleFilterForm(){
-        titleFilterChoices.getItems().add("innehåller");
-        titleFilterChoices.getItems().add("innehåller inte");
-        titleFilterChoices.getItems().add("börjar med");
-        titleFilterChoices.getItems().add("börjar inte med");
-        titleFilterChoices.getItems().add("slutar med");
-        titleFilterChoices.getItems().add("slutar inte med");
-    }
     
     @FXML
     void addFilterHandler(MouseEvent event) {
@@ -178,8 +170,8 @@ public class AddFilterController {
                 filter = null;
                 break;
         }
+        //Add the filter
 
-        MainController.filters.add(filter);
         //Close the window
     }
 

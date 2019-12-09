@@ -1,15 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package nu.te4.moviefx.entities.filters;
 
 import nu.te4.moviefx.entities.Filter;
 import nu.te4.moviefx.entities.Movie;
 
 /**
- *
+ * A filter which filters based on the movies title.
  * @author Adrian Klasson
  */
 public class TitleFilter extends Filter {

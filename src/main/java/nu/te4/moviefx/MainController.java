@@ -1,10 +1,8 @@
 package nu.te4.moviefx;
 
-import javafx.collections.ObservableList;
+import java.util.HashMap;
+import java.util.Map;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
@@ -12,14 +10,18 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import nu.te4.moviefx.entities.Filter;
+import nu.te4.moviefx.beans.MainBean;
+import nu.te4.moviefx.beans.UtilityBean;
+import nu.te4.moviefx.beans.UtilityBean.Window;
 
+/**
+ * Controls the main window.
+ * @author Adrian Klasson
+ */
 public class MainController {
 
-    public static ObservableList<Filter> filters;
+    private final MainBean mainBean = new MainBean();
+    private final UtilityBean utilityBean = new UtilityBean();
     
     @FXML
     private ComboBox<?> searchTypeBox;
@@ -37,58 +39,60 @@ public class MainController {
     private Button addMovieButton;
 
     @FXML
-    private TableView<?> movieTable;
+    private TableView movieTable;
 
     @FXML
-    private TableColumn<?, ?> titleColumn;
+    private TableColumn titleColumn;
 
     @FXML
-    private TableColumn<?, ?> budgetColumn;
+    private TableColumn budgetColumn;
 
     @FXML
-    private TableColumn<?, ?> revenueColumn;
+    private TableColumn revenueColumn;
 
     @FXML
-    private TableColumn<?, ?> lengthColumn;
+    private TableColumn lengthColumn;
 
     @FXML
-    private TableColumn<?, ?> gradeColumn;
+    private TableColumn gradeColumn;
 
     @FXML
-    private TableColumn<?, ?> releaseDateColumn;
+    private TableColumn releaseDateColumn;
 
     @FXML
-    private TableColumn<?, ?> directorColumn;
+    private TableColumn directorColumn;
 
     @FXML
-    private TableColumn<?, ?> genresColumn;
+    private TableColumn genresColumn;
 
+    /**
+     * Initializes this window. This method is called internally by JavaFX.
+     */
+    @FXML
+    public void initialize(){
+        
+        Map<TableColumn, String> columns = new HashMap();
+        columns.put(titleColumn, "title");
+        columns.put(budgetColumn, "budget");
+        columns.put(revenueColumn, "revenue");
+        columns.put(lengthColumn, "length");
+        columns.put(gradeColumn, "grade");
+        columns.put(releaseDateColumn, "releaseDate");
+        columns.put(directorColumn, "director");
+        
+        mainBean.initializeColumns(columns);
+        mainBean.loadMovies(movieTable);
+    }
+    
+    
     @FXML
     void addFilterHandler(MouseEvent event) {
-        try{
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("addFilter.fxml"));
-            Parent root = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Lägg till Filter");
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch(Exception ex){
-            System.out.println("MainController.addFilterHandler: " + ex.getMessage());
-        }
+        utilityBean.openWindow(Window.AddFilter);
     }
     
     @FXML
     void addMovieHandler(MouseEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("addMovie.fxml"));
-            Parent root = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Lägg till Film");
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (Exception ex) {
-            System.out.println("MainController.addMovieHandler: " + ex.getMessage());
-        }
+        utilityBean.openWindow(Window.AddMovie);
     }
 
 }

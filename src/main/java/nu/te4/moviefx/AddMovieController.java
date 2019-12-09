@@ -11,6 +11,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+/**
+ * Controls the Add Movie window.
+ * @author Adrian Klasson
+ */
 public class AddMovieController {
 
     @FXML
