@@ -31,7 +31,11 @@ All of the links have been checked to work **at the time of writing** and are no
 With all of the setup out of the way, you should now be able to build the project.
 
 ## Built With
-* [Maven](https://maven.apache.org/) - Dependency Management 
+* [Maven](https://maven.apache.org/) - Dependency Management
+* [JavaFX](https://openjfx.io/) - Java Client Application Platform
+
+## Useful Tools
+* [Scene Builder](https://gluonhq.com/products/scene-builder/#download) - Helps you building FXML files.
 
 ## Authors
 Adrian Klasson
