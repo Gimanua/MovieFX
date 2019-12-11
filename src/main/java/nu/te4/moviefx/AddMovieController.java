@@ -1,14 +1,8 @@
 package nu.te4.moviefx;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Slider;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import nu.te4.moviefx.beans.AddMovieBean;
@@ -21,7 +15,7 @@ import nu.te4.moviefx.beans.AddMovieBean;
 public class AddMovieController {
 
     private final AddMovieBean addMovieBean = new AddMovieBean();
-    
+
     @FXML
     private TextField titleField;
 
@@ -53,16 +47,10 @@ public class AddMovieController {
     private ComboBox genreBox;
 
     @FXML
+    public ListView genreList;
+
+    @FXML
     private Button addGenre;
-
-    @FXML
-    private TableView genreTable;
-
-    @FXML
-    private TableColumn genreColumn;
-
-    @FXML
-    private TableColumn removeColumn;
 
     @FXML
     private Button addMovieButton;
@@ -80,12 +68,15 @@ public class AddMovieController {
 
     @FXML
     void addGenreHandler(MouseEvent event) {
-        addMovieBean.addGenre(genreBox.getValue().toString(), genreTable);
+        addMovieBean.addGenre(genreBox.getValue(), genreList);
     }
 
     @FXML
     void addMovieHandler(MouseEvent event) {
-
+        addMovieBean.addMovie(titleField, budgetField, revenueField, hoursSpinner, minutesSpinner, secondsSpinner,
+                gradeSlider, releaseDatePicker, directorBox, genreList);
+        Stage stage = (Stage) cancel.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
@@ -94,4 +85,8 @@ public class AddMovieController {
         stage.close();
     }
 
+    @FXML
+    public void genreListKeyPressedHandler(KeyEvent keyEvent) {
+        addMovieBean.genreListKeyPressed(keyEvent, genreList);
+    }
 }

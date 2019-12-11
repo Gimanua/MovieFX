@@ -23,14 +23,10 @@ public class ConnectionFactory {
     
     /**
      * Gets a connection to the database. Don't forget to call the {@link #init() init} method once before calling this method.
-     * @return 
+     * @return A connection to the database.
+     * @throws SQLException If the database is unavailable.
      */
-    public static Connection getConnection(){
-        try{
-            return DriverManager.getConnection("jdbc:mysql://localhost/movie_db?user=user&password=zFp0MhPAQoeLLAbR");
-        } catch(SQLException ex){
-            System.out.println("ConnectionFactory.getConnection: " + ex.getMessage());
-            return null;
-        }
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection("jdbc:mysql://localhost/movie_db?user=user&password=zFp0MhPAQoeLLAbR");
     }
 }

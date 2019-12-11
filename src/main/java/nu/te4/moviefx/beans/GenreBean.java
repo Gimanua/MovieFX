@@ -1,13 +1,12 @@
 package nu.te4.moviefx.beans;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import nu.te4.moviefx.ConnectionFactory;
 import nu.te4.moviefx.entities.Genre;
+
+import javax.xml.transform.Result;
 
 /**
  * Controls all the logic concering a Genre or Genres for a Movie.
@@ -84,5 +83,28 @@ public class GenreBean {
         }
         
         return null;
+    }
+
+    /**
+     * Inserts a genre into the projects database.
+     * @param genre The genre to insert.
+     * @return The same genre but with the auto-generated id set.
+     * @throws SQLException If database is unavailable or the genre already exists.
+     */
+    public Genre insertGenre(Genre genre) throws SQLException {
+        Connection connection = ConnectionFactory.getConnection();
+        String sql = "INSERT INTO genre (id, name) VALUES(NULL, ?)";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1, genre.getName());
+        stmt.executeUpdate();
+
+        sql = "SELECT LAST_INSERT_ID()";
+        Statement idStmt = connection.createStatement();
+        ResultSet data = idStmt.executeQuery(sql);
+        data.first();
+        int id = data.getInt(1);
+
+        genre.setId(id);
+        return genre;
     }
 }

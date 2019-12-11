@@ -1,9 +1,6 @@
 package nu.te4.moviefx.beans;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import nu.te4.moviefx.ConnectionFactory;
@@ -60,5 +57,28 @@ public class DirectorBean {
         }
         
         return directors;
+    }
+
+    /**
+     * Insets a director into the projects database.
+     * @param director The director to insert
+     * @return The same director but with the auto-generated id set.
+     * @throws SQLException If database is unavailable or the director already exists.
+     */
+    public Director insertDirector(Director director) throws SQLException {
+        Connection connection = ConnectionFactory.getConnection();
+        String sql = "INSERT INTO directors (id, name) VALUES(NULL, ?)";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1, director.getName());
+        stmt.executeUpdate();
+
+        sql = "SELECT LAST_INSERT_ID()";
+        Statement idStmt = connection.createStatement();
+        ResultSet data = idStmt.executeQuery(sql);
+        data.first();
+        int id = data.getInt(1);
+
+        director.setId(id);
+        return director;
     }
 }

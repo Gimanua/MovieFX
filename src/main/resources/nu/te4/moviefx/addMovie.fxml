@@ -1,22 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.Spinner?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="492.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nu.te4.moviefx.AddMovieController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="492.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nu.te4.moviefx.AddMovieController">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" text="Titel">
          <font>
@@ -82,12 +70,7 @@
             <Button fx:id="addGenre" mnemonicParsing="false" onMouseClicked="#addGenreHandler" text="Lägg till Genre" />
          </children>
       </HBox>
-      <TableView fx:id="genreTable" prefHeight="200.0" prefWidth="200.0">
-        <columns>
-          <TableColumn fx:id="genreColumn" prefWidth="500.0" text="Genre" />
-          <TableColumn fx:id="removeColumn" minWidth="0.0" prefWidth="99.0" text="Ta bort" />
-        </columns>
-      </TableView>
+      <ListView fx:id="genreList" onKeyPressed="#genreListKeyPressedHandler" prefHeight="200.0" prefWidth="200.0" />
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
          <children>
             <Button fx:id="addMovieButton" mnemonicParsing="false" onMouseClicked="#addMovieHandler" text="Lägg till Film" />
