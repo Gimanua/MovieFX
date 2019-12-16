@@ -93,7 +93,7 @@ public class GenreBean {
      */
     public Genre insertGenre(Genre genre) throws SQLException {
         Connection connection = ConnectionFactory.getConnection();
-        String sql = "INSERT INTO genre (id, name) VALUES(NULL, ?)";
+        String sql = "INSERT INTO genres (id, name) VALUES(NULL, ?)";
         PreparedStatement stmt = connection.prepareStatement(sql);
         stmt.setString(1, genre.getName());
         stmt.executeUpdate();

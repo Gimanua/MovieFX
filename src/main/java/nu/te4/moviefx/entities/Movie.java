@@ -5,8 +5,8 @@
  */
 package nu.te4.moviefx.entities;
 
+import java.sql.Date;
 import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.List;
 /**
  *
@@ -19,11 +19,11 @@ public class Movie {
     private long revenue;
     private Time length;
     private double grade;
-    private Timestamp releaseDate;
+    private Date releaseDate;
     private Director director;
     private List<Genre> genres;
 
-    public Movie(String title, long budget, long revenue, Time length, double grade, Timestamp releaseDate, Director director, List<Genre> genres) {
+    public Movie(String title, long budget, long revenue, Time length, double grade, Date releaseDate, Director director, List<Genre> genres) {
         this.title = title;
         this.budget = budget;
         this.revenue = revenue;
@@ -34,7 +34,7 @@ public class Movie {
         this.genres = genres;
     }
 
-    public Movie(Integer id, String title, long budget, long revenue, Time length, double grade, Timestamp releaseDate, Director director, List<Genre> genres) {
+    public Movie(Integer id, String title, long budget, long revenue, Time length, double grade, Date releaseDate, Director director, List<Genre> genres) {
         this.id = id;
         this.title = title;
         this.budget = budget;
@@ -94,11 +94,11 @@ public class Movie {
         this.grade = grade;
     }
 
-    public Timestamp getReleaseDate() {
+    public Date getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Timestamp releaseDate) {
+    public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
 

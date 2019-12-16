@@ -1,15 +1,21 @@
 package nu.te4.moviefx;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListView;
+import javafx.scene.control.Slider;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import nu.te4.moviefx.beans.AddMovieBean;
+import nu.te4.moviefx.entities.Director;
+import nu.te4.moviefx.entities.Genre;
 
 /**
  * Controls the Add Movie window.
- *
  * @author Adrian Klasson
  */
 public class AddMovieController {
@@ -26,13 +32,13 @@ public class AddMovieController {
     private TextField revenueField;
 
     @FXML
-    private Spinner hoursSpinner;
+    private Spinner<Integer> hoursSpinner;
 
     @FXML
-    private Spinner minutesSpinner;
+    private Spinner<Integer> minutesSpinner;
 
     @FXML
-    private Spinner secondsSpinner;
+    private Spinner<Integer> secondsSpinner;
 
     @FXML
     private Slider gradeSlider;
@@ -41,22 +47,53 @@ public class AddMovieController {
     private DatePicker releaseDatePicker;
 
     @FXML
-    private ComboBox directorBox;
+    private ChoiceBox<Director> directorBox;
 
     @FXML
-    private ComboBox genreBox;
+    private TextField directorField;
 
     @FXML
-    public ListView genreList;
+    private ChoiceBox<Genre> genreBox;
 
     @FXML
-    private Button addGenre;
+    private TextField genreField;
 
     @FXML
-    private Button addMovieButton;
+    private ListView<Genre> genreList;
+    
+    @FXML
+    private Button cancelButton;
 
     @FXML
-    private Button cancel;
+    void onGenreListKeyPressedHandler(KeyEvent event) {
+        addMovieBean.genreListKeyPressed(event, genreList);
+    }
+
+    @FXML
+    void onAddGenre(MouseEvent event) {
+        addMovieBean.addGenre(genreBox, genreList);
+    }
+
+    @FXML
+    void onAddMovie(MouseEvent event) {
+        addMovieBean.addMovie(titleField, budgetField, revenueField, hoursSpinner, minutesSpinner, secondsSpinner, gradeSlider, releaseDatePicker, directorBox, genreList);
+    }
+
+    @FXML
+    void onAddNewDirector(MouseEvent event) {
+        addMovieBean.addNewDirector(directorField, directorBox);
+    }
+
+    @FXML
+    void onAddNewGenre(MouseEvent event) {
+        addMovieBean.addNewGenre(genreField, genreBox);
+    }
+
+    @FXML
+    void onCancel(MouseEvent event) {
+        addMovieBean.cancel(cancelButton);
+    }
+
 
     @FXML
     public void initialize() {
@@ -64,29 +101,5 @@ public class AddMovieController {
         addMovieBean.initializeSpinners(hoursSpinner, minutesSpinner, secondsSpinner);
         addMovieBean.initializeDirectorBox(directorBox);
         addMovieBean.initializeGenreBox(genreBox);
-    }
-
-    @FXML
-    void addGenreHandler(MouseEvent event) {
-        addMovieBean.addGenre(genreBox.getValue(), genreList);
-    }
-
-    @FXML
-    void addMovieHandler(MouseEvent event) {
-        addMovieBean.addMovie(titleField, budgetField, revenueField, hoursSpinner, minutesSpinner, secondsSpinner,
-                gradeSlider, releaseDatePicker, directorBox, genreList);
-        Stage stage = (Stage) cancel.getScene().getWindow();
-        stage.close();
-    }
-
-    @FXML
-    void cancelHandler(MouseEvent event) {
-        Stage stage = (Stage) cancel.getScene().getWindow();
-        stage.close();
-    }
-
-    @FXML
-    public void genreListKeyPressedHandler(KeyEvent keyEvent) {
-        addMovieBean.genreListKeyPressed(keyEvent, genreList);
     }
 }

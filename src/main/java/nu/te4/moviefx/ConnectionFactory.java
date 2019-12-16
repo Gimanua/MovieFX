@@ -27,6 +27,6 @@ public class ConnectionFactory {
      * @throws SQLException If the database is unavailable.
      */
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost/movie_db?user=user&password=zFp0MhPAQoeLLAbR");
+        return DriverManager.getConnection("jdbc:mysql://localhost/movie_db?user=user&password=m25pFs9JqkCUr9w0");
     }
 }

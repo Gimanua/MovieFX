@@ -3,6 +3,7 @@ package nu.te4.moviefx;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
@@ -10,8 +11,10 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import nu.te4.moviefx.beans.AddFilterBean;
 import nu.te4.moviefx.entities.Filter;
 import nu.te4.moviefx.entities.filters.TitleFilter;
 import nu.te4.moviefx.entities.filters.TitleFilter.FilterChoice;
@@ -22,14 +25,16 @@ import nu.te4.moviefx.entities.filters.TitleFilter.FilterChoice;
  */
 public class AddFilterController {
 
+    private final AddFilterBean addFilterBean = new AddFilterBean();
+    
     @FXML
-    private ChoiceBox filterType;
+    private ChoiceBox<String> filterBox;
 
     @FXML
     private HBox titleFilterForm;
 
     @FXML
-    private ChoiceBox titleFilterChoices;
+    private ChoiceBox<?> titleFilterChoices;
 
     @FXML
     private TextField titleFilterField;
@@ -53,19 +58,25 @@ public class AddFilterController {
     private TextField revenueFilterField;
 
     @FXML
-    private HBox lengthFilterForm;
+    private GridPane lengthFilterForm;
 
     @FXML
-    private ChoiceBox<?> lengthFilterChoices;
+    private Spinner lengthFilterHoursSpinner;
 
     @FXML
-    private Spinner<?> lengthFilterSpinner;
+    private Spinner lengthFilterMinutesSpinner;
+
+    @FXML
+    private Spinner lengthFilterSecondsSpinner;
+
+    @FXML
+    private ChoiceBox lengthFilterChoices;
 
     @FXML
     private HBox ratingFilterForm;
 
     @FXML
-    private ChoiceBox<?> ratingFilterChoices;
+    private ChoiceBox ratingFilterChoices;
 
     @FXML
     private Slider ratingFilterSlider;
@@ -74,7 +85,7 @@ public class AddFilterController {
     private HBox releaseDateFilterForm;
 
     @FXML
-    private ChoiceBox<?> releaseDateFilterChoices;
+    private ChoiceBox releaseDateFilterChoices;
 
     @FXML
     private DatePicker releaseDateFilterDatePicker;
@@ -83,78 +94,33 @@ public class AddFilterController {
     private HBox directorFilterForm;
 
     @FXML
-    private ChoiceBox<?> directorFilterChoices;
+    private ChoiceBox directorFilterChoices;
 
     @FXML
-    private ChoiceBox<?> directorFilterDirectorChoices;
+    private ChoiceBox directorFilterDirectorChoices;
 
     @FXML
     private Button cancelButton;
 
-    private HBox currentForm;
+    @FXML
+    void onAddFilter(MouseEvent event) {
+
+    }
+
+    @FXML
+    void onCancel(MouseEvent event) {
+        addFilterBean.cancel(cancelButton);
+    }
 
     /**
      * Initalizes this window. This method is called internally by JavaFX.
      */
     @FXML
     public void initialize() {
-        initializeFilterType();
-    }
-
-    /**
-     * Adds all the filter types.
-     */
-    private void initializeFilterType() {
-        filterType.getItems().add("Titel");
-        filterType.getItems().add("Budget");
-        filterType.getItems().add("Inkomst");
-        filterType.getItems().add("Längd");
-        filterType.getItems().add("Betyg");
-        filterType.getItems().add("Lanseringsdatum");
-        filterType.getItems().add("Regissör");
-        filterType.getItems().add("Genrer");
-
-        ChangeListener<Number> changeListener = new ChangeListener<Number>() {
-
-            @Override
-            public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
-                String selectedOption = filterType.getItems().get((Integer) newValue).toString();
-
-                if (currentForm != null) {
-                    currentForm.setVisible(false);
-                }
-                switch (selectedOption) {
-                    case "Titel":
-                        currentForm = titleFilterForm;
-                        break;
-                    case "Budget":
-                        currentForm = budgetFilterForm;
-                        break;
-                    case "Inkomst":
-                        currentForm = revenueFilterForm;
-                        break;
-                    case "Längd":
-                        currentForm = lengthFilterForm;
-                        break;
-                    case "Betyg":
-                        currentForm = ratingFilterForm;
-                        break;
-                    case "Lanseringsdatum":
-                        currentForm = releaseDateFilterForm;
-                        break;
-                    case "Regissör":
-                        currentForm = directorFilterForm;
-                        break;
-                    case "Genrer":
-                        //Add form for this
-                        break;
-                }
-                currentForm.setVisible(true);
-            }
-        };
-        filterType.getSelectionModel().selectedIndexProperty().addListener(changeListener);
+        addFilterBean.initializeFilterBox(filterBox, titleFilterForm, budgetFilterForm, revenueFilterForm, lengthFilterForm, ratingFilterForm, releaseDateFilterForm, directorFilterForm);
     }
     
+    /*
     @FXML
     void addFilterHandler(MouseEvent event) {
         Filter filter;
@@ -174,10 +140,5 @@ public class AddFilterController {
 
         //Close the window
     }
-
-    @FXML
-    void cancelHandler(MouseEvent event) {
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
-        stage.close();
-    }
+    */
 }

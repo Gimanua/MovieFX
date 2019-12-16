@@ -41,7 +41,7 @@ public class MovieBean {
                 String title = data.getString("title");
                 double grade = data.getDouble("grade");
                 Time length = data.getTime("length");
-                Timestamp releaseDate = data.getTimestamp("release_date");
+                Date releaseDate = data.getDate("release_date");
                 long budget = data.getLong("budget");
                 long revenue = data.getLong("revenue");
                 int directorID = data.getInt("director_id");
@@ -101,7 +101,7 @@ public class MovieBean {
         stmt.setString(1, movie.getTitle());
         stmt.setDouble(2, movie.getGrade());
         stmt.setTime(3, movie.getLength());
-        stmt.setTimestamp(4, movie.getReleaseDate());
+        stmt.setDate(4, movie.getReleaseDate());
         stmt.setLong(5, movie.getBudget());
         stmt.setLong(6, movie.getRevenue());
         stmt.setInt(7, movie.getDirector().getId());
