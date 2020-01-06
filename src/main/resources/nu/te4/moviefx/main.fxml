@@ -47,7 +47,7 @@
             <Button mnemonicParsing="false" onMouseClicked="#onAddFilter" text="Lägg till Filter" GridPane.columnIndex="3" />
          </children>
       </GridPane>
-      <ListView fx:id="filterList" prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="filterList" onKeyPressed="#onFilterListKeyPressed" prefHeight="200.0" prefWidth="200.0" />
       <Label text="Filmer">
          <font>
             <Font name="System Bold" size="12.0" />

@@ -17,7 +17,7 @@
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nu.te4.moviefx.AddFilterController">
    <children>
       <Label text="Filter för" />
-      <ChoiceBox fx:id="filterType" prefWidth="150.0" />
+      <ChoiceBox fx:id="filterBox" prefWidth="150.0" />
       <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="147.0" prefWidth="600.0">
          <children>
             <HBox fx:id="titleFilterForm" prefHeight="100.0" prefWidth="200.0" visible="false">
@@ -55,13 +55,13 @@
               </rowConstraints>
                <children>
                   <TextField editable="false" prefHeight="25.0" prefWidth="99.0" text="Filmen är" GridPane.rowIndex="1" />
+                  <ChoiceBox fx:id="lengthFilterChoices" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Spinner fx:id="lengthFilterHoursSpinner" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                   <Spinner fx:id="lengthFilterMinutesSpinner" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                   <Spinner fx:id="lengthFilterSecondsSpinner" GridPane.columnIndex="4" GridPane.rowIndex="1" />
                   <Label text="Timmar" GridPane.columnIndex="2" />
                   <Label text="Minuter" GridPane.columnIndex="3" />
                   <Label layoutX="364.0" layoutY="67.0" text="Sekunder" GridPane.columnIndex="4" />
-                  <ChoiceBox fx:id="lengthFilterChoices" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
             <HBox fx:id="ratingFilterForm" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" visible="false">

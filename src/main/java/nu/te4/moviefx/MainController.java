@@ -1,5 +1,6 @@
 package nu.te4.moviefx;
 
+import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -7,6 +8,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import nu.te4.moviefx.beans.MainBean;
 import nu.te4.moviefx.beans.UtilityBean;
@@ -69,16 +71,22 @@ public class MainController {
     void onAddMovie(MouseEvent event) {
         utilityBean.openWindow(getClass(), UtilityBean.Window.AddMovie);
     }
+    
+    @FXML
+    void onFilterListKeyPressed(KeyEvent event) {
+        mainBean.filterListKeyPressed(event, filterList);
+    }
 
     @FXML
     void onReload(MouseEvent event) {
-        mainBean.reloadMovies(movieTable);
+        mainBean.reloadMovies(movieTable, searchTypeBox, searchQueryField);
     }
     
     @FXML
     public void initialize(){
         mainBean.initializeSearchTypes(searchTypeBox);
+        mainBean.initializeFilterList(filterList);
         mainBean.initializeColumns(titleColumn, budgetColumn, revenueColumn, lengthColumn, gradeColumn, releaseDateColumn, directorColumn, genresColumn);
-        mainBean.loadMovies(movieTable);
+        mainBean.loadMovies(movieTable, searchTypeBox, searchQueryField);
     }
 }

@@ -8,10 +8,11 @@ import javafx.stage.Stage;
 
 /**
  * A class holding useful methods used by multiple windows.
+ *
  * @author Adrian Klasson
  */
 public class UtilityBean {
-    
+
     /**
      * Represents a window used by the application.
      */
@@ -21,39 +22,39 @@ public class UtilityBean {
          * The main window of the application.
          */
         Main("main.fxml", ""),
-        
         /**
          * The window where you add filters.
          */
         AddFilter("addFilter.fxml", "Lägg till Filter"),
-        
         /**
          * The window where you add movies.
          */
         AddMovie("addMovie.fxml", "Lägg till Film");
-        
+
         /**
          * The filename of the FXML file for the window.
          */
         public final String fxmlFile;
-        
+
         /**
          * The title of the window.
          */
         public final String title;
-        
-        private Window(String fxmlFile, String title){
+
+        private Window(String fxmlFile, String title) {
             this.fxmlFile = fxmlFile;
             this.title = title;
         }
     }
-    
+
     /**
      * Opens a new window.
-     * @param controllerClass The class of the controller whom whish to open a new window.
+     *
+     * @param controllerClass The class of the controller whom whish to open a
+     * new window.
      * @param window The window to open.
      */
-    public void openWindow(Class controllerClass, Window window){
+    public void openWindow(Class controllerClass, Window window) {
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(controllerClass.getResource(window.fxmlFile));
             Parent root = (Parent) fxmlLoader.load();
@@ -63,6 +64,10 @@ public class UtilityBean {
             stage.show();
         } catch(IOException ex){
             System.out.println("UtilityBean.openWindow: " + ex.getMessage());
+            var stack = ex.getStackTrace();
+            for(var s : stack){
+                System.out.println(s.toString());
+            }
         }
     }
 }

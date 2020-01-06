@@ -9,27 +9,11 @@ import nu.te4.moviefx.entities.Movie;
  */
 public class TitleFilter extends Filter {
 
-    private String filterValue;
-    private FilterChoice filterChoice;
+    private final String filterValue;
+    private final FilterChoice filterChoice;
 
     public TitleFilter(String filterValue, FilterChoice filterChoice) {
         this.filterValue = filterValue;
-        this.filterChoice = filterChoice;
-    }
-
-    public String getFilterValue() {
-        return filterValue;
-    }
-
-    public void setFilterValue(String filterValue) {
-        this.filterValue = filterValue;
-    }
-
-    public FilterChoice getFilterChoice() {
-        return filterChoice;
-    }
-
-    public void setFilterChoice(FilterChoice filterChoice) {
         this.filterChoice = filterChoice;
     }
     
@@ -41,7 +25,7 @@ public class TitleFilter extends Filter {
         EndsWith("slutar med"),
         DoesNotEndWith("slutar inte med");
         
-        private String sentenceValue;
+        private final String sentenceValue;
         
         private FilterChoice(String sentenceValue){
             this.sentenceValue = sentenceValue;

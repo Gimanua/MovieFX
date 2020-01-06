@@ -104,7 +104,7 @@ public class AddFilterController {
 
     @FXML
     void onAddFilter(MouseEvent event) {
-
+        addFilterBean.addFilter(filterBox, titleFilterForm, budgetFilterForm, revenueFilterForm, lengthFilterForm, ratingFilterForm, releaseDateFilterForm, directorFilterForm);
     }
 
     @FXML
@@ -119,26 +119,4 @@ public class AddFilterController {
     public void initialize() {
         addFilterBean.initializeFilterBox(filterBox, titleFilterForm, budgetFilterForm, revenueFilterForm, lengthFilterForm, ratingFilterForm, releaseDateFilterForm, directorFilterForm);
     }
-    
-    /*
-    @FXML
-    void addFilterHandler(MouseEvent event) {
-        Filter filter;
-        String selectedFilterType = filterType.getItems().get(filterType.getSelectionModel().getSelectedIndex()).toString();
-
-        switch (selectedFilterType) {
-            case "Titel":
-                String filterValue = titleFilterField.getText();
-                FilterChoice filterChoice;
-                filter = new TitleFilter(titleFilterField.getText(), TitleFilter.FilterChoice.StartsWith);
-                break;
-            default:
-                filter = null;
-                break;
-        }
-        //Add the filter
-
-        //Close the window
-    }
-    */
 }
