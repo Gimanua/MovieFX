@@ -145,6 +145,25 @@ public class MainBean {
         }
     }
     
+    /**
+     * Checks if the delete key was pressed, and if so removes the potentially selected movie from the table.
+     * @param event The event that fired.
+     * @param movieTable The table containing the movies.
+     */
+    public void movieTableKeyPressed(KeyEvent event, TableView<Movie> movieTable){
+        if(event.getCode() == KeyCode.DELETE){
+            
+            
+            int selectedIndex = movieTable.getSelectionModel().getSelectedIndex();
+            if(selectedIndex != -1){
+                Movie selectedMovie = movieTable.getItems().get(selectedIndex);
+                
+                if(movieBean.deleteMovie(selectedMovie))
+                    movieTable.getItems().remove(selectedIndex);
+            }
+        }
+    }
+    
     public static void addFilter(Filter filter) {
         filters.add(filter);
     }

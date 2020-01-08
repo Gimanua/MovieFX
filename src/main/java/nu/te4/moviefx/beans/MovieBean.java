@@ -89,6 +89,21 @@ public class MovieBean {
         return false;
     }
 
+    public boolean deleteMovie(Movie movie){
+        try(Connection connection = ConnectionFactory.getConnection()){
+            String sql = "DELETE FROM movies WHERE id=?";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, movie.getId());
+            int rowsAffected = stmt.executeUpdate();
+            
+            return rowsAffected == 1;
+        } catch(SQLException e){
+            System.out.println("MovieBean.deleteMovie: " + e.getMessage());
+        }
+        
+        return false;
+    }
+    
     /**
      * Inserts a movie into the projects database.
      * @param movie

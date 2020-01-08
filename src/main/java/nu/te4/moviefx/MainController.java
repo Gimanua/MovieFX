@@ -13,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import nu.te4.moviefx.beans.MainBean;
 import nu.te4.moviefx.beans.UtilityBean;
 import nu.te4.moviefx.entities.Filter;
+import nu.te4.moviefx.entities.Movie;
 
 /**
  * Controls the main window.
@@ -36,7 +37,7 @@ public class MainController {
     private Button addMovieButton;
 
     @FXML
-    private TableView<?> movieTable;
+    private TableView<Movie> movieTable;
 
     @FXML
     private TableColumn<?, ?> titleColumn;
@@ -75,6 +76,11 @@ public class MainController {
     @FXML
     void onFilterListKeyPressed(KeyEvent event) {
         mainBean.filterListKeyPressed(event, filterList);
+    }
+    
+    @FXML
+    void onMovieTableKeyPressed(KeyEvent event) {
+        mainBean.movieTableKeyPressed(event, movieTable);
     }
 
     @FXML
